@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% load main_extras %}
 {% block title %}О нас - OVI{% endblock %}
 
 {% block content %}
@@ -34,7 +35,7 @@
                 <p class="value-description">Мы искренне заботимся о здоровье каждого пациента</p>
             </div>
             <div class="value-card animate-on-scroll">
-                <div class="value-icon">🤝</div>
+                <div class="value-icon"><img src="{% static "icons/handshake.svg" %}" width="32" height="32"></div>
                 <h3 class="value-title">Доверие</h3>
                 <p class="value-description">Строим отношения основанные на честности и профессионализме</p>
             </div>
@@ -101,10 +102,10 @@
         <p class="cta-subtitle animate-on-scroll">Скачайте приложение и получите доступ к новому уровню медицинского обслуживания</p>
         <div class="animate-on-scroll">
             <a href="#" class="btn btn-primary">
-                <span>📱</span> Скачать приложение
+                <span><img src="{% static "icons/import.svg" %}" width="32" height="32"></span> Скачать приложение
             </a>
             <a href="{% url 'work' %}" class="btn btn-secondary">
-                <span>👥</span> Работать с нами
+                <span><img src="{% static "icons/people.svg" %}" width="32" height="32"></span> Работать с нами
             </a>
         </div>
     </div>

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% load main_extras %}
 {% block title %}Контакты - OVI{% endblock %}
 
 {% block content %}
@@ -18,7 +19,7 @@
             <!-- Contact Info -->
             <div class="contact-info animate-on-scroll">
                 <div class="contact-item">
-                    <div class="contact-icon">📧</div>
+                    <div class="contact-icon"><img src="{% static "icons/mail.svg" %}" width="32" height="32"></div>
                     <div class="contact-details">
                         <h3>Email</h3>
                         <p><a href="mailto:support@ovi.uz">support@ovi.uz</a></p>
@@ -26,7 +27,7 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-icon">📞</div>
+                    <div class="contact-icon"><img src="{% static "icons/phone3.svg" %}" width="32" height="32"></div>
                     <div class="contact-details">
                         <h3>Телефон поддержки</h3>
                         <p><a href="tel:+998901234567">+998 90 123 45 67</a></p>
@@ -34,7 +35,7 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-icon">📍</div>
+                    <div class="contact-icon"><img src="{% static "icons/office.svg" %}" width="32" height="32"></div>
                     <div class="contact-details">
                         <h3>Офис</h3>
                         <p>г. Ташкент, ул. Ислама Каримова, 49</p>
@@ -42,7 +43,7 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-icon">💬</div>
+                    <div class="contact-icon"><img src="{% static "icons/telegram.svg" %}" width="32" height="32"></div>
                     <div class="contact-details">
                         <h3>Telegram</h3>
                         <p><a href="#">@ovi_support</a></p>
@@ -50,7 +51,7 @@
                     </div>
                 </div>
                 <div class="contact-item">
-                    <div class="contact-icon">📱</div>
+                    <div class="contact-icon"><img src="{% static "icons/instagram.svg" %}" width="32" height="32"></div>
                     <div class="contact-details">
                         <h3>Instagram</h3>
                         <p><a href="#">@ovi_health</a></p>
@@ -68,10 +69,10 @@
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit" class="btn btn-primary">
-                        <span>📤</span> Отправить сообщение
+                        <span><img src="{% static "icons/export.svg" %}" width="32" height="32"></span> Отправить сообщение
                     </button>
                     <a href="{% url 'work' %}" class="btn btn-secondary">
-                        <span>💼</span> Работать с нами
+                        <span><img src="{% static "icons/handshake.svg" %}" width="32" height="32"></span> Работать с нами
                     </a>
                 </form>
             </div>
@@ -85,11 +86,8 @@
         <h2 class="social-title animate-on-scroll">Мы в социальных сетях</h2>
         <p class="social-subtitle animate-on-scroll">Подписывайтесь на наши аккаунты, чтобы быть в курсе всех новостей</p>
         <div class="social-links animate-on-scroll">
-            <a href="#" class="social-link" title="Instagram">📷</a>
-            <a href="#" class="social-link" title="Telegram">✈️</a>
-            <a href="#" class="social-link" title="Facebook">📘</a>
-            <a href="#" class="social-link" title="LinkedIn">💼</a>
-            <a href="#" class="social-link" title="YouTube">📺</a>
+            <a href="#" class="social-link" title="Instagram"><img src="{% static "icons/telegram.svg" %}" width="32" height="32"></a>
+            <a href="#" class="social-link" title="Telegram"><img src="{% static "icons/instagram.svg" %}" width="32" height="32"></a>
         </div>
     </div>
 </section>
@@ -162,15 +160,15 @@
             </div>
             <div class="map-info">
                 <div class="map-info-item">
-                    <h4>🚗 На автомобиле</h4>
+                    <h4><img src="{% static "icons/car.svg" %}" width="32" height="32"> На автомобиле</h4>
                     <p>Парковка доступна рядом с офисом</p>
                 </div>
                 <div class="map-info-item">
-                    <h4>🚇 На метро</h4>
+                    <h4><img src="{% static "icons/subway.svg" %}" width="32" height="32"> На метро</h4>
                     <p>Станция Алишер Навои, 5 минут пешком</p>
                 </div>
                 <div class="map-info-item">
-                    <h4>🚌 На автобусе</h4>
+                    <h4><img src="{% static "icons/bus.svg" %}" width="32" height="32"> На автобусе</h4>
                     <p>Остановка Медицинский институт</p>
                 </div>
             </div>

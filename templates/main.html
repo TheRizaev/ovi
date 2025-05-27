@@ -11,7 +11,7 @@
             <p class="hero-subtitle">Вызов врача, медсестры, анализы, лекарства, онлайн-консультации и запись в клинику - в одном приложении</p>
             <div class="hero-buttons">
                 <a href="#" class="btn btn-primary">
-                    <span>📱</span> Скачать OVI
+                    <span><img src="{% static "icons/import.svg" %}" width="24" height="24"></span> Скачать OVI
                 </a>
                 <a href="#how-it-works" class="btn btn-secondary">
                     <span>▶️</span> Посмотреть, как это работает
@@ -19,7 +19,11 @@
             </div>
         </div>
         <div class="hero-visual">
-            <div class="hero-phone"></div>
+            <div class="hero-phone">
+                <div class="phone-inner">
+                    <div class="phone-ovi-text">OVI</div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -28,16 +32,97 @@
 <section class="partners">
     <div class="partners-container">
         <p class="partners-title">Нам доверяют ведущие медицинские учреждения</p>
-        <div class="partners-grid">
-            {% for partner in partners %}
-                <div class="partner-logo">{{ partner.name|truncatewords:1 }}</div>
-            {% empty %}
-                <div class="partner-logo">MedCenter</div>
-                <div class="partner-logo">HealthPlus</div>
-                <div class="partner-logo">CityClinic</div>
-                <div class="partner-logo">MedLab</div>
-                <div class="partner-logo">Pharma+</div>
-            {% endfor %}
+        <div class="partners-wrapper">
+            <!-- Первая строка - движется влево -->
+            <div class="partners-row">
+                <div class="partners-track">
+                    {% if partners %}
+                        {% for partner in partners %}
+                            <div class="partner-logo">{{ partner.name|truncatewords:2 }}</div>
+                        {% endfor %}
+                        <!-- Дубликат для бесшовного цикла -->
+                        {% for partner in partners %}
+                            <div class="partner-logo">{{ partner.name|truncatewords:2 }}</div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="partner-logo">MedCenter Plus</div>
+                        <div class="partner-logo">HealthCare Pro</div>
+                        <div class="partner-logo">CityClinic</div>
+                        <div class="partner-logo">MedLab Express</div>
+                        <div class="partner-logo">Pharma Network</div>
+                        <div class="partner-logo">DiagnosticCenter</div>
+                        <div class="partner-logo">WellnessClinic</div>
+                        <div class="partner-logo">MediCore Solutions</div>
+                        <div class="partner-logo">HealthPoint</div>
+                        <div class="partner-logo">MedServices</div>
+                        <!-- Дубликат для бесшовного цикла -->
+                        <div class="partner-logo">MedCenter Plus</div>
+                        <div class="partner-logo">HealthCare Pro</div>
+                        <div class="partner-logo">CityClinic</div>
+                        <div class="partner-logo">MedLab Express</div>
+                        <div class="partner-logo">Pharma Network</div>
+                        <div class="partner-logo">DiagnosticCenter</div>
+                        <div class="partner-logo">WellnessClinic</div>
+                        <div class="partner-logo">MediCore Solutions</div>
+                        <div class="partner-logo">HealthPoint</div>
+                        <div class="partner-logo">MedServices</div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Вторая строка - движется вправо -->
+            <div class="partners-row">
+                <div class="partners-track">
+                    <div class="partner-logo">CardioCenter</div>
+                    <div class="partner-logo">NeuroClinic</div>
+                    <div class="partner-logo">PediatricCare</div>
+                    <div class="partner-logo">DentalPro</div>
+                    <div class="partner-logo">VisionCare</div>
+                    <div class="partner-logo">SkinHealth</div>
+                    <div class="partner-logo">OrthoCare</div>
+                    <div class="partner-logo">SportsMed</div>
+                    <div class="partner-logo">RehabCenter</div>
+                    <div class="partner-logo">EmergencyCare</div>
+                    <!-- Дубликат для бесшовного цикла -->
+                    <div class="partner-logo">CardioCenter</div>
+                    <div class="partner-logo">NeuroClinic</div>
+                    <div class="partner-logo">PediatricCare</div>
+                    <div class="partner-logo">DentalPro</div>
+                    <div class="partner-logo">VisionCare</div>
+                    <div class="partner-logo">SkinHealth</div>
+                    <div class="partner-logo">OrthoCare</div>
+                    <div class="partner-logo">SportsMed</div>
+                    <div class="partner-logo">RehabCenter</div>
+                    <div class="partner-logo">EmergencyCare</div>
+                </div>
+            </div>
+            
+            <!-- Третья строка - движется влево быстрее -->
+            <div class="partners-row">
+                <div class="partners-track">
+                    <div class="partner-logo">Premium Health</div>
+                    <div class="partner-logo">Elite Medical</div>
+                    <div class="partner-logo">Advanced Care</div>
+                    <div class="partner-logo">Modern Clinic</div>
+                    <div class="partner-logo">Smart Health</div>
+                    <div class="partner-logo">Digital Med</div>
+                    <div class="partner-logo">Future Care</div>
+                    <div class="partner-logo">Innovation Lab</div>
+                    <div class="partner-logo">Tech Medicine</div>
+                    <div class="partner-logo">Next Gen Health</div>
+                    <!-- Дубликат для бесшовного цикла -->
+                    <div class="partner-logo">Premium Health</div>
+                    <div class="partner-logo">Elite Medical</div>
+                    <div class="partner-logo">Advanced Care</div>
+                    <div class="partner-logo">Modern Clinic</div>
+                    <div class="partner-logo">Smart Health</div>
+                    <div class="partner-logo">Digital Med</div>
+                    <div class="partner-logo">Future Care</div>
+                    <div class="partner-logo">Innovation Lab</div>
+                    <div class="partner-logo">Tech Medicine</div>
+                    <div class="partner-logo">Next Gen Health</div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -48,25 +133,29 @@
         <h2 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Последние новости</h2>
         <div class="news-cards">
             {% for news_item in latest_news %}
-                <div class="news-card animate-on-scroll">
+                <a href="{{ news_item.get_absolute_url }}" class="news-card animate-on-scroll">
                     <div class="news-image">
                         {% if news_item.image %}
                             <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
+                        {% else %}
+                            {{ news_item.category.name }}
                         {% endif %}
                     </div>
                     <div class="news-content">
                         <h3 class="news-title">{{ news_item.title }}</h3>
                         <p class="news-excerpt">{{ news_item.excerpt|truncatewords:15 }}</p>
                     </div>
-                </div>
+                </a>
             {% empty %}
-                <div class="news-card animate-on-scroll">
-                    <div class="news-image"></div>
+                <a href="{% url 'news' %}" class="news-card animate-on-scroll">
+                    <div class="news-image">
+                        Новости компании
+                    </div>
                     <div class="news-content">
                         <h3 class="news-title">OVI расширяет сеть партнеров</h3>
                         <p class="news-excerpt">Мы подключили еще 5 клиник в центре города</p>
                     </div>
-                </div>
+                </a>
             {% endfor %}
         </div>
     </div>
@@ -102,22 +191,22 @@
         <h2 class="section-title">Почему OVI</h2>
         <div class="features-grid">
             <div class="feature-card animate-on-scroll">
-                <div class="feature-icon">✓</div>
+                <div class="feature-icon"><img src="{% static "icons/tick.svg" %}" width="32" height="32"></div>
                 <h3 class="feature-title">Проверенные специалисты</h3>
                 <p class="feature-description">Все врачи и медсестры проходят тщательную проверку</p>
             </div>
             <div class="feature-card animate-on-scroll">
-                <div class="feature-icon">⚡</div>
+                <div class="feature-icon"><img src="{% static "icons/lightning.svg" %}" width="32" height="32"></div>
                 <h3 class="feature-title">Без очередей и звонков</h3>
                 <p class="feature-description">Забудьте о долгих ожиданиях и звонках</p>
             </div>
             <div class="feature-card animate-on-scroll">
-                <div class="feature-icon">📱</div>
+                <div class="feature-icon"><img src="{% static "icons/phone.svg" %}" width="32" height="32"></div>
                 <h3 class="feature-title">Всё через приложение</h3>
                 <p class="feature-description">Управляйте здоровьем из одного приложения</p>
             </div>
             <div class="feature-card animate-on-scroll">
-                <div class="feature-icon">🔒</div>
+                <div class="feature-icon"><img src="{% static "icons/lock.svg" %}" width="32" height="32"></div>
                 <h3 class="feature-title">Безопасно и удобно</h3>
                 <p class="feature-description">Ваши данные защищены</p>
             </div>
@@ -156,22 +245,22 @@
         <p style="font-size: 1.2rem; color: var(--medium-gray); margin-bottom: 40px;">Мы работаем с проверенными специалистами</p>
         <div class="team-grid">
             <div class="team-member animate-on-scroll">
-                <div class="team-avatar">👨‍⚕️</div>
+                <div class="team-avatar"><img src="{% static "icons/doc.svg" %}" width="32" height="32"></div>
                 <h4>Врачи</h4>
                 <p class="team-role">Терапевты, кардиологи, неврологи</p>
             </div>
             <div class="team-member animate-on-scroll">
-                <div class="team-avatar">👩‍⚕️</div>
+                <div class="team-avatar"><img src="{% static "icons/nurse.svg" %}" width="32" height="32"></div>
                 <h4>Медсестры</h4>
                 <p class="team-role">Уколы, капельницы, процедуры</p>
             </div>
             <div class="team-member animate-on-scroll">
-                <div class="team-avatar">🔬</div>
+                <div class="team-avatar"><img src="{% static "icons/doc2.svg" %}" width="32" height="32"></div>
                 <h4>Лаборанты</h4>
                 <p class="team-role">Забор анализов на дому</p>
             </div>
             <div class="team-member animate-on-scroll">
-                <div class="team-avatar">💊</div>
+                <div class="team-avatar"><img src="{% static "icons/farm.svg" %}" width="32" height="32"></div>
                 <h4>Фармацевты</h4>
                 <p class="team-role">Доставка лекарств</p>
             </div>
@@ -186,14 +275,14 @@
         <p class="download-subtitle">Скачайте OVI и получите доступ ко всем медицинским услугам</p>
         <div class="download-buttons">
             <a href="#" class="app-store-btn">
-                <span>🍎</span>
+                <span><img src="{% static "icons/play-market.svg" %}" width="32" height="32"></span>
                 <div>
                     <div style="font-size: 0.8rem;">Загрузить в</div>
                     <div>App Store</div>
                 </div>
             </a>
             <a href="#" class="app-store-btn">
-                <span>🤖</span>
+                <span><img src="{% static "icons/app-store.svg" %}" width="32" height="32"></span>
                 <div>
                     <div style="font-size: 0.8rem;">Доступно в</div>
                     <div>Google Play</div>

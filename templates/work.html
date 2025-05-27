@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% load main_extras %}
 {% block title %}Работа с нами - OVI{% endblock %}
 
 {% block content %}
@@ -19,7 +20,7 @@
         
         <div class="audience-grid">
             <div class="audience-card animate-on-scroll">
-                <div class="audience-icon">👨‍⚕️</div>
+                <div class="audience-icon"><img src="{% static "icons/doc7.svg" %}" width="32" height="32"></div>
                 <h3 class="audience-title">Врачи</h3>
                 <p class="audience-description">Опытные специалисты всех направлений для работы на дому и онлайн-консультаций</p>
                 <ul class="audience-benefits">
@@ -30,7 +31,7 @@
                 </ul>
             </div>
             <div class="audience-card animate-on-scroll">
-                <div class="audience-icon">👩‍⚕️</div>
+                <div class="audience-icon"><img src="{% static "icons/doc8.svg" %}" width="32" height="32"></div>
                 <h3 class="audience-title">Медсёстры</h3>
                 <p class="audience-description">Квалифицированные медсёстры для проведения процедур и забора анализов на дому</p>
                 <ul class="audience-benefits">
@@ -41,7 +42,7 @@
                 </ul>
             </div>
             <div class="audience-card animate-on-scroll">
-                <div class="audience-icon">🏥</div>
+                <div class="audience-icon"><img src="{% static "icons/clinic.svg" %}" width="32" height="32"></div>
                 <h3 class="audience-title">Клиники</h3>
                 <p class="audience-description">Медицинские центры и поликлиники для расширения клиентской базы</p>
                 <ul class="audience-benefits">
@@ -52,7 +53,7 @@
                 </ul>
             </div>
             <div class="audience-card animate-on-scroll">
-                <div class="audience-icon">💊</div>
+                <div class="audience-icon"><img src="{% static "icons/pharma.svg" %}" width="32" height="32"></div>
                 <h3 class="audience-title">Аптеки</h3>
                 <p class="audience-description">Аптечные сети для доставки лекарств и медицинских товаров</p>
                 <ul class="audience-benefits">
@@ -74,32 +75,32 @@
         
         <div class="benefits-grid">
             <div class="benefit-card animate-on-scroll">
-                <div class="benefit-icon">💰</div>
+                <div class="benefit-icon"><img src="{% static "icons/cash.svg" %}" width="32" height="32"></div>
                 <h3 class="benefit-title">Достойная оплата</h3>
                 <p class="benefit-description">Конкурентная оплата труда и прозрачная система расчетов</p>
             </div>
             <div class="benefit-card animate-on-scroll">
-                <div class="benefit-icon">⏰</div>
+                <div class="benefit-icon"><img src="{% static "icons/alarm.svg" %}" width="32" height="32"></div>
                 <h3 class="benefit-title">Гибкий график</h3>
                 <p class="benefit-description">Работайте в удобное время, совмещайте с основной деятельностью</p>
             </div>
             <div class="benefit-card animate-on-scroll">
-                <div class="benefit-icon">📚</div>
+                <div class="benefit-icon"><img src="{% static "icons/books.svg" %}" width="32" height="32"></div>
                 <h3 class="benefit-title">Обучение и развитие</h3>
                 <p class="benefit-description">Регулярные тренинги, семинары и программы повышения квалификации</p>
             </div>
             <div class="benefit-card animate-on-scroll">
-                <div class="benefit-icon">🛡️</div>
+                <div class="benefit-icon"><img src="{% static "icons/armor.svg" %}" width="32" height="32"></div>
                 <h3 class="benefit-title">Страхование</h3>
                 <p class="benefit-description">Медицинское страхование и страхование профессиональной ответственности</p>
             </div>
             <div class="benefit-card animate-on-scroll">
-                <div class="benefit-icon">📱</div>
+                <div class="benefit-icon"><img src="{% static "icons/phone.svg" %}" width="32" height="32"></div>
                 <h3 class="benefit-title">Удобная платформа</h3>
                 <p class="benefit-description">Современное приложение для управления заказами и расписанием</p>
             </div>
             <div class="benefit-card animate-on-scroll">
-                <div class="benefit-icon">🤝</div>
+                <div class="benefit-icon"><img src="{% static "icons/handshake.svg" %}" width="32" height="32"></div>
                 <h3 class="benefit-title">Поддержка 24/7</h3>
                 <p class="benefit-description">Круглосуточная техническая и административная поддержка</p>
             </div>
@@ -149,10 +150,10 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="btn btn-primary">
-                    <span>📤</span> Отправить заявку
+                    <span><img src="{% static "icons/export.svg" %}" width="32" height="32"></span> Отправить заявку
                 </button>
                 <a href="{% url 'contacts' %}" class="btn btn-secondary">
-                    <span>📞</span> Узнать больше
+                    <span><img src="{% static "icons/phone2.svg" %}" width="32" height="32"></span> Узнать больше
                 </a>
             </form>
         </div>

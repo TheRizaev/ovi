@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% load main_extras %}
 {% block title %}Партнёры - OVI{% endblock %}
 
 {% block content %}
@@ -84,17 +85,17 @@
         <p class="section-subtitle animate-on-scroll">Почему медицинские учреждения выбирают сотрудничество с нами</p>
         <div class="benefits-grid">
             <div class="benefit-card animate-on-scroll">
-                <div class="benefit-icon">📈</div>
+                <div class="benefit-icon"><img src="{% static "icons/rise.svg" %}" width="32" height="32"></div>
                 <h3 class="benefit-title">Рост клиентской базы</h3>
                 <p class="benefit-description">Привлечение новых пациентов через нашу платформу с большой аудиторией</p>
             </div>
             <div class="benefit-card animate-on-scroll">
-                <div class="benefit-icon">💻</div>
+                <div class="benefit-icon"><img src="{% static "icons/laptop2.svg" %}" width="32" height="32"></div>
                 <h3 class="benefit-title">Цифровизация процессов</h3>
                 <p class="benefit-description">Современные инструменты для управления записью и взаимодействия с пациентами</p>
             </div>
             <div class="benefit-card animate-on-scroll">
-                <div class="benefit-icon">🤝</div>
+                <div class="benefit-icon"><img src="{% static "icons/handshake.svg" %}" width="32" height="32"></div>
                 <h3 class="benefit-title">Надежное партнерство</h3>
                 <p class="benefit-description">Прозрачные условия сотрудничества и своевременные выплаты</p>
             </div>
@@ -109,10 +110,10 @@
         <p class="cta-subtitle animate-on-scroll">Присоединяйтесь к экосистеме OVI и расширьте возможности своего бизнеса</p>
         <div class="animate-on-scroll">
             <a href="{% url 'work' %}" class="btn btn-primary">
-                <span>🤝</span> Стать партнёром
+                <span><img src="{% static "icons/handshake.svg" %}" width="32" height="32"></span> Стать партнёром
             </a>
             <a href="{% url 'contacts' %}" class="btn btn-secondary">
-                <span>📞</span> Связаться с нами
+                <span><img src="{% static "icons/phone2.svg" %}" width="32" height="32"></span> Связаться с нами
             </a>
         </div>
     </div>
