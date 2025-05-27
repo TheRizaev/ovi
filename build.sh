@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 # build.sh
 
-# Применяем миграции
+set -o errexit  # Exit on error
+
+# Установка зависимостей
+pip install -r requirements.txt
+
+# Сбор статических файлов
+python manage.py collectstatic --noinput
+
+# Применение миграций
 python manage.py migrate
 
-# Собираем статику
-python manage.py collectstatic --noinput
+# Создание тестовых данных (если необходимо)
+python manage.py create_test_data
