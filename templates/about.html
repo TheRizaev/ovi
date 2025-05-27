@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}О нас - OVI{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-content">
+        <h1 class="page-title">Мы меняем культуру обращения за медицинской помощью</h1>
+        <p class="page-subtitle">OVI - это платформа, которая делает заботу о здоровье простой, технологичной и ориентированной на человека</p>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="mission-section">
+    <div class="section-container">
+        <div class="mission-content animate-on-scroll">
+            <h2 class="mission-title">Наша миссия</h2>
+            <div class="mission-text">
+                Мы формируем новый стандарт здравоохранения в регионе, делая медицинскую помощь доступной, качественной и удобной для каждого человека. Наша цель — создать экосистему, где забота о здоровье становится естественной частью повседневной жизни.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="values-section">
+    <div class="section-container">
+        <h2 class="values-title animate-on-scroll">Наши ценности</h2>
+        <div class="values-grid">
+            {% for icon, title, desc in "❤️,Забота,Мы искренне заботимся о здоровье каждого пациента|🤝,Доверие,Строим отношения основанные на честности и профессионализме|✨,Простота,Делаем получение медицинской помощи максимально простым|🛡️,Ответственность,Несем полную ответственность за качество наших услуг|🙏,Уважение,Относимся с уважением к каждому пациенту и партнеру"|split:"|" %}
+                {% with parts=icon|split:"," %}
+                <div class="value-card animate-on-scroll">
+                    <div class="value-icon">{{ parts.0 }}</div>
+                    <h3 class="value-title">{{ parts.1 }}</h3>
+                    <p class="value-description">{{ parts.2 }}</p>
+                </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="stats-section">
+    <div class="section-container">
+        <div class="stats-grid">
+            {% for number, label in "1000+,Довольных пациентов|50+,Врачей в команде|24/7,Поддержка клиентов|15+,Партнерских клиник"|split:"|" %}
+                {% with parts=number|split:"," %}
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number">{{ parts.0 }}</span>
+                    <span class="stat-label">{{ parts.1 }}</span>
+                </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section">
+    <div class="section-container">
+        <h2 class="team-title animate-on-scroll">Наша команда</h2>
+        <p class="team-subtitle animate-on-scroll">Профессионалы, которые делают OVI лучше каждый день</p>
+        <div class="team-photo animate-on-scroll">
+            Фото команды OVI
+            <br>
+            <small style="opacity: 0.8;">Место для фотографии команды разработчиков и медицинских специалистов</small>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="section-container">
+        <h2 class="cta-title animate-on-scroll">Готовы присоединиться к OVI?</h2>
+        <p class="cta-subtitle animate-on-scroll">Скачайте приложение и получите доступ к новому уровню медицинского обслуживания</p>
+        <div class="animate-on-scroll">
+            <a href="#" class="btn btn-primary">
+                <span>📱</span> Скачать приложение
+            </a>
+            <a href="{% url 'work' %}" class="btn btn-secondary">
+                <span>👥</span> Работать с нами
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакты - OVI{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-content">
+        <h1 class="page-title">Контакты</h1>
+        <p class="page-subtitle">Свяжитесь с нами любым удобным способом. Мы готовы ответить на все ваши вопросы</p>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+    <div class="section-container">
+        <div class="contact-content">
+            <!-- Contact Info -->
+            <div class="contact-info animate-on-scroll">
+                {% for icon, title, info, desc in "📧,Email,support@ovi.uz,Ответим в течение 1 часа|📞,Телефон поддержки,+998 90 123 45 67,Круглосуточно без выходных|📍,Офис,г. Ташкент ул. Ислама Каримова 49,Пн-Пт: 09:00-18:00|💬,Telegram,@ovi_support,Быстрая поддержка в мессенджере|📱,Instagram,@ovi_health,Новости и полезные советы"|split:"|" %}
+                    {% with parts=icon|split:"," %}
+                    <div class="contact-item">
+                        <div class="contact-icon">{{ parts.0 }}</div>
+                        <div class="contact-details">
+                            <h3>{{ parts.1 }}</h3>
+                            <p><a href="{% if parts.0 == '📧' %}mailto:{% elif parts.0 == '📞' %}tel:{% endif %}{{ parts.2 }}">{{ parts.2 }}</a></p>
+                            <p>{{ parts.3 }}</p>
+                        </div>
+                    </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form animate-on-scroll">
+                <h2 class="form-title">Напишите нам</h2>
+                <p class="form-subtitle">Оставьте сообщение, и мы свяжемся с вами в ближайшее время</p>
+                
+                <form method="post" id="contactForm">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">
+                        <span>📤</span> Отправить сообщение
+                    </button>
+                    <a href="{% url 'work' %}" class="btn btn-secondary">
+                        <span>💼</span> Работать с нами
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Social Links -->
+<section class="social-section">
+    <div class="section-container">
+        <h2 class="social-title animate-on-scroll">Мы в социальных сетях</h2>
+        <p class="social-subtitle animate-on-scroll">Подписывайтесь на наши аккаунты, чтобы быть в курсе всех новостей</p>
+        <div class="social-links animate-on-scroll">
+            {% for icon, title in "📷,Instagram|✈️,Telegram|📘,Facebook|💼,LinkedIn|📺,YouTube"|split:"|" %}
+                {% with parts=icon|split:"," %}
+                <a href="#" class="social-link" title="{{ parts.1 }}">{{ parts.0 }}</a>
+                {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <div class="section-container">
+        <h2 class="section-title animate-on-scroll">Часто задаваемые вопросы</h2>
+        <p class="section-subtitle animate-on-scroll">Ответы на популярные вопросы о нашем сервисе</p>
+        
+        <div class="faq-container">
+            {% for question, answer in "Как быстро врач приедет на дом?,В среднем врач прибывает в течение 60 минут после оформления заказа|Сколько стоят услуги OVI?,Стоимость зависит от типа услуги. Консультация врача на дому от 100000 сум|Работаете ли вы круглосуточно?,Да наша служба поддержки работает 24/7|Какие способы оплаты доступны?,Мы принимаем оплату банковскими картами через мобильные платежи наличными|Можно ли отменить заказ?,Да заказ можно отменить бесплатно в течение 15 минут после оформления"|split:"|" %}
+                {% with parts=question|split:"?" %}
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        <span>{{ parts.0 }}?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>{{ parts.1 }}</p>
+                    </div>
+                </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="map-section">
+    <div class="section-container">
+        <div class="map-container animate-on-scroll">
+            <h2 class="section-title" style="margin-bottom: 30px;">Как нас найти</h2>
+            <div class="map-placeholder">
+                Интерактивная карта
+                <br>
+                <small style="opacity: 0.8;">г. Ташкент, ул. Ислама Каримова, 49</small>
+            </div>
+            <div class="map-info">
+                {% for icon, title, desc in "🚗,На автомобиле,Парковка доступна рядом с офисом|🚇,На метро,Станция Алишер Навои 5 минут пешком|🚌,На автобусе,Остановка Медицинский институт"|split:"|" %}
+                    {% with parts=icon|split:"," %}
+                    <div class="map-info-item">
+                        <h4>{{ parts.0 }} {{ parts.1 }}</h4>
+                        <p>{{ parts.2 }}</p>
+                    </div>
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // FAQ functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const faqItem = question.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const isActive = question.classList.contains('active');
+
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+                q.parentElement.querySelector('.faq-answer').classList.remove('active');
+            });
+
+            // Toggle current item
+            if (!isActive) {
+                question.classList.add('active');
+                answer.classList.add('active');
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

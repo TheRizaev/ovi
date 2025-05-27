@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ news_item.title }} - OVI{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-content">
+        <nav style="margin-bottom: 20px;">
+            <a href="{% url 'news' %}" style="color: var(--primary-blue);">← Назад к новостям</a>
+        </nav>
+        <h1 class="page-title">{{ news_item.title }}</h1>
+        <div class="featured-meta" style="justify-content: center; color: var(--medium-gray);">
+            <span>📅 {{ news_item.created_at|date:"d.m.Y" }}</span>
+            <span>👤 {{ news_item.author.get_full_name|default:news_item.author.username }}</span>
+            <span>🏷️ {{ news_item.category.name }}</span>
+        </div>
+    </div>
+</section>
+
+<!-- News Content -->
+<section class="news-content-section" style="padding: 60px 0; background: white;">
+    <div class="section-container">
+        <article class="news-article" style="max-width: 800px; margin: 0 auto;">
+            {% if news_item.image %}
+                <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}" style="width: 100%; border-radius: 15px; margin-bottom: 30px;">
+            {% endif %}
+            
+            <div class="news-excerpt" style="font-size: 1.2rem; color: var(--medium-gray); margin-bottom: 30px; font-style: italic;">
+                {{ news_item.excerpt }}
+            </div>
+            
+            <div class="news-content" style="font-size: 1.1rem; line-height: 1.8; color: var(--dark-gray);">
+                {{ news_item.content|linebreaks }}
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- Related News -->
+{% if related_news %}
+<section class="related-news" style="padding: 60px 0; background: var(--light-gray);">
+    <div class="section-container">
+        <h2 class="section-title">Похожие новости</h2>
+        <div class="news-cards">
+            {% for related in related_news %}
+                <div class="news-card">
+                    <div class="news-image">
+                        {% if related.image %}
+                            <img src="{{ related.image.url }}" alt="{{ related.title }}">
+                        {% endif %}
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">{{ related.title }}</h3>
+                        <p class="news-excerpt">{{ related.excerpt|truncatewords:15 }}</p>
+                        <a href="{{ related.get_absolute_url }}" class="btn btn-primary">Читать</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

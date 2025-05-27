@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %}Новости - OVI{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-content">
+        <h1 class="page-title">Новости OVI</h1>
+        <p class="page-subtitle">Следите за последними событиями, обновлениями и достижениями нашей платформы</p>
+    </div>
+</section>
+
+<!-- Featured News -->
+{% if featured_news %}
+<section class="featured-news">
+    <div class="section-container">
+        <article class="featured-article animate-on-scroll">
+            <div class="featured-image">
+                {% if featured_news.image %}
+                    <img src="{{ featured_news.image.url }}" alt="{{ featured_news.title }}">
+                {% else %}
+                    Главная новость
+                {% endif %}
+            </div>
+            <div class="featured-content">
+                <h2>{{ featured_news.title }}</h2>
+                <div class="featured-meta">
+                    <span>📅 {{ featured_news.created_at|date:"d.m.Y" }}</span>
+                    <span>👤 {{ featured_news.author.get_full_name|default:featured_news.author.username }}</span>
+                    <span>🏷️ {{ featured_news.category.name }}</span>
+                </div>
+                <p class="featured-excerpt">{{ featured_news.excerpt }}</p>
+                <a href="{{ featured_news.get_absolute_url }}" class="read-more-btn">
+                    <span>📖</span> Читать полностью
+                </a>
+            </div>
+        </article>
+    </div>
+</section>
+{% endif %}
+
+<!-- Filter Tabs -->
+<section class="news-section">
+    <div class="section-container">
+        <div class="filter-tabs animate-on-scroll">
+            <button class="filter-tab {% if current_category == 'all' %}active{% endif %}" data-category="all">Все новости</button>
+            {% for category in categories %}
+                <button class="filter-tab {% if current_category == category.slug %}active{% endif %}" data-category="{{ category.slug }}">{{ category.name }}</button>
+            {% endfor %}
+        </div>
+
+        <!-- News Grid -->
+        <div class="news-grid">
+            {% for news_item in news %}
+                <article class="news-card animate-on-scroll" data-category="{{ news_item.category.slug }}">
+                    <div class="news-image">
+                        <div class="news-date">{{ news_item.created_at|date:"j M" }}</div>
+                        {% if news_item.image %}
+                            <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
+                        {% else %}
+                            {{ news_item.category.name }}
+                        {% endif %}
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">{{ news_item.category.name }}</span>
+                        <h3 class="news-title">{{ news_item.title }}</h3>
+                        <p class="news-excerpt">{{ news_item.excerpt|truncatewords:20 }}</p>
+                        <div class="news-author">
+                            <div class="author-avatar">{{ news_item.author.first_name.0|default:"A" }}{{ news_item.author.last_name.0|default:"U" }}</div>
+                            <span>{{ news_item.author.get_full_name|default:news_item.author.username }}</span>
+                        </div>
+                    </div>
+                </article>
+            {% empty %}
+                <p>Новости не найдены.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if news.has_other_pages %}
+            <div class="load-more-section">
+                {% if news.has_previous %}
+                    <a href="?page={{ news.previous_page_number }}{% if current_category != 'all' %}&category={{ current_category }}{% endif %}" class="load-more-btn">← Предыдущая</a>
+                {% endif %}
+                {% if news.has_next %}
+                    <a href="?page={{ news.next_page_number }}{% if current_category != 'all' %}&category={{ current_category }}{% endif %}" class="load-more-btn">Следующая →</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section">
+    <div class="section-container">
+        <h2 class="newsletter-title animate-on-scroll">Подпишитесь на новости</h2>
+        <p class="newsletter-subtitle animate-on-scroll">Будьте в курсе всех обновлений и новостей OVI</p>
+        <form class="newsletter-form animate-on-scroll">
+            <input type="email" class="newsletter-input" placeholder="Ваш email адрес" required>
+            <button type="submit" class="newsletter-btn">Подписаться</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const category = tab.dataset.category;
+            const url = new URL(window.location);
+            
+            if (category === 'all') {
+                url.searchParams.delete('category');
+            } else {
+                url.searchParams.set('category', category);
+            }
+            
+            window.location = url;
+        });
+    });
+
+    // Newsletter form
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('.newsletter-input').value;
+            alert(`Спасибо за подписку! Мы отправим новости на ${email}`);
+            e.target.reset();
+        });
+    }
+});
+</script>

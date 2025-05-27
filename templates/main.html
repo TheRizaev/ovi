@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load main_extras %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">Медицинская помощь там, где удобно</h1>
+            <p class="hero-subtitle">Вызов врача, медсестры, анализы, лекарства, онлайн-консультации и запись в клинику - в одном приложении</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">
+                    <span>📱</span> Скачать OVI
+                </a>
+                <a href="#how-it-works" class="btn btn-secondary">
+                    <span>▶️</span> Посмотреть, как это работает
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-phone"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners -->
+<section class="partners">
+    <div class="partners-container">
+        <p class="partners-title">Нам доверяют ведущие медицинские учреждения</p>
+        <div class="partners-grid">
+            {% for partner in partners %}
+                <div class="partner-logo">{{ partner.name|truncatewords:1 }}</div>
+            {% empty %}
+                <div class="partner-logo">MedCenter</div>
+                <div class="partner-logo">HealthPlus</div>
+                <div class="partner-logo">CityClinic</div>
+                <div class="partner-logo">MedLab</div>
+                <div class="partner-logo">Pharma+</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Latest News -->
+<section class="news-section" style="padding: 60px 0; background: white;">
+    <div class="section-container">
+        <h2 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Последние новости</h2>
+        <div class="news-cards">
+            {% for news_item in latest_news %}
+                <div class="news-card animate-on-scroll">
+                    <div class="news-image">
+                        {% if news_item.image %}
+                            <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
+                        {% endif %}
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">{{ news_item.title }}</h3>
+                        <p class="news-excerpt">{{ news_item.excerpt|truncatewords:15 }}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="news-card animate-on-scroll">
+                    <div class="news-image"></div>
+                    <div class="news-content">
+                        <h3 class="news-title">OVI расширяет сеть партнеров</h3>
+                        <p class="news-excerpt">Мы подключили еще 5 клиник в центре города</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- How it works -->
+<section class="how-it-works" id="how-it-works">
+    <div class="section-container">
+        <h2 class="section-title">Как это работает</h2>
+        <div class="steps-grid">
+            <div class="step-card animate-on-scroll">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Выберите услугу</h3>
+                <p class="step-description">Врач на дом, анализы, лекарства, онлайн-консультация или запись в клинику</p>
+            </div>
+            <div class="step-card animate-on-scroll">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Выберите специалиста и время</h3>
+                <p class="step-description">Просмотрите профили врачей, отзывы и выберите удобное время</p>
+            </div>
+            <div class="step-card animate-on-scroll">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Получите помощь</h3>
+                <p class="step-description">Дома, в офисе или онлайн - где вам удобно</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why OVI -->
+<section class="why-ovi">
+    <div class="section-container">
+        <h2 class="section-title">Почему OVI</h2>
+        <div class="features-grid">
+            {% for feature in "✓⚡📱🔒"|make_list %}
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">{{ feature }}</div>
+                    <h3 class="feature-title">
+                        {% if forloop.counter == 1 %}Проверенные специалисты
+                        {% elif forloop.counter == 2 %}Без очередей и звонков
+                        {% elif forloop.counter == 3 %}Всё через приложение
+                        {% else %}Безопасно и удобно{% endif %}
+                    </h3>
+                    <p class="feature-description">
+                        {% if forloop.counter == 1 %}Все врачи и медсестры проходят тщательную проверку
+                        {% elif forloop.counter == 2 %}Забудьте о долгих ожиданиях и звонках
+                        {% elif forloop.counter == 3 %}Управляйте здоровьем из одного приложения
+                        {% else %}Ваши данные защищены{% endif %}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Reviews -->
+<section class="reviews">
+    <div class="section-container">
+        <h2 class="section-title">Отзывы пациентов</h2>
+        <div class="reviews-grid">
+            <div class="review-card animate-on-scroll">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Вызвала врача через OVI, когда заболел ребенок. Врач приехал через 40 минут, все объяснил и назначил лечение. Очень удобно!"</p>
+                <div class="review-author">Анна К., мама двоих детей</div>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Делал анализы на дому через OVI. Медсестра приехала точно в назначенное время, все прошло быстро и профессионально."</p>
+                <div class="review-author">Дмитрий С., 45 лет</div>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Онлайн-консультация с кардиологом спасла мне много времени. Получил рекомендации не выходя из дома."</p>
+                <div class="review-author">Марина Р., пенсионерка</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team -->
+<section class="team">
+    <div class="section-container">
+        <h2 class="section-title">Кто с нами работает</h2>
+        <p style="font-size: 1.2rem; color: var(--medium-gray); margin-bottom: 40px;">Мы работаем с проверенными специалистами</p>
+        <div class="team-grid">
+            {% for icon, title, role in "👨‍⚕️,Врачи,Терапевты кардиологи неврологи|👩‍⚕️,Медсестры,Уколы капельницы процедуры|🔬,Лаборанты,Забор анализов на дому|💊,Фармацевты,Доставка лекарств"|split:"|" %}
+                {% with parts=icon|split:"," %}
+                <div class="team-member animate-on-scroll">
+                    <div class="team-avatar">{{ parts.0 }}</div>
+                    <h4>{{ parts.1 }}</h4>
+                    <p class="team-role">{{ parts.2 }}</p>
+                </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Download App -->
+<section class="download-app">
+    <div class="section-container">
+        <h2 class="download-title">Установите приложение</h2>
+        <p class="download-subtitle">Скачайте OVI и получите доступ ко всем медицинским услугам</p>
+        <div class="download-buttons">
+            <a href="#" class="app-store-btn">
+                <span>🍎</span>
+                <div>
+                    <div style="font-size: 0.8rem;">Загрузить в</div>
+                    <div>App Store</div>
+                </div>
+            </a>
+            <a href="#" class="app-store-btn">
+                <span>🤖</span>
+                <div>
+                    <div style="font-size: 0.8rem;">Доступно в</div>
+                    <div>Google Play</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
