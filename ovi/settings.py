@@ -82,9 +82,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']  # Directory for development static files
 STATIC_ROOT = BASE_DIR / 'staticfiles'    # Directory for collected static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Ensure collectstatic runs smoothly
-WHITENOISE_MANIFEST_STRICT = False  # Allows fallback if manifest is missing
+WHITENOISE_MANIFEST_STRICT = False
 
 # Media files
 MEDIA_URL = '/media/'
