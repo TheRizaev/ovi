@@ -1,12 +1,16 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+"""
+ASGI config for ovi project.
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('main.urls')),
-]
+It exposes the ASGI callable as a module-level variable named ``application``.
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+For more information on this file, see
+https://docs.djangoproject.com/en/3.2/howto/deployment/aasgi/
+"""
+
+import os
+
+from django.core.asgi import get_asgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ovi.settings')
+
+application = get_asgi_application()

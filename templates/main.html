@@ -101,23 +101,26 @@
     <div class="section-container">
         <h2 class="section-title">Почему OVI</h2>
         <div class="features-grid">
-            {% for feature in "✓⚡📱🔒"|make_list %}
-                <div class="feature-card animate-on-scroll">
-                    <div class="feature-icon">{{ feature }}</div>
-                    <h3 class="feature-title">
-                        {% if forloop.counter == 1 %}Проверенные специалисты
-                        {% elif forloop.counter == 2 %}Без очередей и звонков
-                        {% elif forloop.counter == 3 %}Всё через приложение
-                        {% else %}Безопасно и удобно{% endif %}
-                    </h3>
-                    <p class="feature-description">
-                        {% if forloop.counter == 1 %}Все врачи и медсестры проходят тщательную проверку
-                        {% elif forloop.counter == 2 %}Забудьте о долгих ожиданиях и звонках
-                        {% elif forloop.counter == 3 %}Управляйте здоровьем из одного приложения
-                        {% else %}Ваши данные защищены{% endif %}
-                    </p>
-                </div>
-            {% endfor %}
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">✓</div>
+                <h3 class="feature-title">Проверенные специалисты</h3>
+                <p class="feature-description">Все врачи и медсестры проходят тщательную проверку</p>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Без очередей и звонков</h3>
+                <p class="feature-description">Забудьте о долгих ожиданиях и звонках</p>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Всё через приложение</h3>
+                <p class="feature-description">Управляйте здоровьем из одного приложения</p>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Безопасно и удобно</h3>
+                <p class="feature-description">Ваши данные защищены</p>
+            </div>
         </div>
     </div>
 </section>
@@ -152,15 +155,26 @@
         <h2 class="section-title">Кто с нами работает</h2>
         <p style="font-size: 1.2rem; color: var(--medium-gray); margin-bottom: 40px;">Мы работаем с проверенными специалистами</p>
         <div class="team-grid">
-            {% for icon, title, role in "👨‍⚕️,Врачи,Терапевты кардиологи неврологи|👩‍⚕️,Медсестры,Уколы капельницы процедуры|🔬,Лаборанты,Забор анализов на дому|💊,Фармацевты,Доставка лекарств"|split:"|" %}
-                {% with parts=icon|split:"," %}
-                <div class="team-member animate-on-scroll">
-                    <div class="team-avatar">{{ parts.0 }}</div>
-                    <h4>{{ parts.1 }}</h4>
-                    <p class="team-role">{{ parts.2 }}</p>
-                </div>
-                {% endwith %}
-            {% endfor %}
+            <div class="team-member animate-on-scroll">
+                <div class="team-avatar">👨‍⚕️</div>
+                <h4>Врачи</h4>
+                <p class="team-role">Терапевты, кардиологи, неврологи</p>
+            </div>
+            <div class="team-member animate-on-scroll">
+                <div class="team-avatar">👩‍⚕️</div>
+                <h4>Медсестры</h4>
+                <p class="team-role">Уколы, капельницы, процедуры</p>
+            </div>
+            <div class="team-member animate-on-scroll">
+                <div class="team-avatar">🔬</div>
+                <h4>Лаборанты</h4>
+                <p class="team-role">Забор анализов на дому</p>
+            </div>
+            <div class="team-member animate-on-scroll">
+                <div class="team-avatar">💊</div>
+                <h4>Фармацевты</h4>
+                <p class="team-role">Доставка лекарств</p>
+            </div>
         </div>
     </div>
 </section>

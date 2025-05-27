@@ -1,0 +1,21 @@
+{% load main_extras %}
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="{% url 'main' %}" class="logo">OVI</a>
+        <ul class="nav-menu">
+            <li><a href="{% url 'main' %}" class="nav-link {% is_active_url 'main' %}">Главная</a></li>
+            <li><a href="{% url 'about' %}" class="nav-link {% is_active_url 'about' %}">О нас</a></li>
+            <li><a href="{% url 'services' %}" class="nav-link {% is_active_url 'services' %}">Услуги</a></li>
+            <li><a href="{% url 'news' %}" class="nav-link {% is_active_url 'news' %}">Новости</a></li>
+            <li><a href="{% url 'partners' %}" class="nav-link {% is_active_url 'partners' %}">Партнёры</a></li>
+            <li><a href="{% url 'contacts' %}" class="nav-link {% is_active_url 'contacts' %}">Контакты</a></li>
+            <li><a href="{% url 'work' %}" class="nav-link {% is_active_url 'work' %}">Работа с нами</a></li>
+        </ul>
+        <div class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>

@@ -28,15 +28,31 @@
     <div class="section-container">
         <h2 class="values-title animate-on-scroll">Наши ценности</h2>
         <div class="values-grid">
-            {% for icon, title, desc in "❤️,Забота,Мы искренне заботимся о здоровье каждого пациента|🤝,Доверие,Строим отношения основанные на честности и профессионализме|✨,Простота,Делаем получение медицинской помощи максимально простым|🛡️,Ответственность,Несем полную ответственность за качество наших услуг|🙏,Уважение,Относимся с уважением к каждому пациенту и партнеру"|split:"|" %}
-                {% with parts=icon|split:"," %}
-                <div class="value-card animate-on-scroll">
-                    <div class="value-icon">{{ parts.0 }}</div>
-                    <h3 class="value-title">{{ parts.1 }}</h3>
-                    <p class="value-description">{{ parts.2 }}</p>
-                </div>
-                {% endwith %}
-            {% endfor %}
+            <div class="value-card animate-on-scroll">
+                <div class="value-icon">❤️</div>
+                <h3 class="value-title">Забота</h3>
+                <p class="value-description">Мы искренне заботимся о здоровье каждого пациента</p>
+            </div>
+            <div class="value-card animate-on-scroll">
+                <div class="value-icon">🤝</div>
+                <h3 class="value-title">Доверие</h3>
+                <p class="value-description">Строим отношения основанные на честности и профессионализме</p>
+            </div>
+            <div class="value-card animate-on-scroll">
+                <div class="value-icon">✨</div>
+                <h3 class="value-title">Простота</h3>
+                <p class="value-description">Делаем получение медицинской помощи максимально простым</p>
+            </div>
+            <div class="value-card animate-on-scroll">
+                <div class="value-icon">🛡️</div>
+                <h3 class="value-title">Ответственность</h3>
+                <p class="value-description">Несем полную ответственность за качество наших услуг</p>
+            </div>
+            <div class="value-card animate-on-scroll">
+                <div class="value-icon">🙏</div>
+                <h3 class="value-title">Уважение</h3>
+                <p class="value-description">Относимся с уважением к каждому пациенту и партнеру</p>
+            </div>
         </div>
     </div>
 </section>
@@ -45,14 +61,22 @@
 <section class="stats-section">
     <div class="section-container">
         <div class="stats-grid">
-            {% for number, label in "1000+,Довольных пациентов|50+,Врачей в команде|24/7,Поддержка клиентов|15+,Партнерских клиник"|split:"|" %}
-                {% with parts=number|split:"," %}
-                <div class="stat-item animate-on-scroll">
-                    <span class="stat-number">{{ parts.0 }}</span>
-                    <span class="stat-label">{{ parts.1 }}</span>
-                </div>
-                {% endwith %}
-            {% endfor %}
+            <div class="stat-item animate-on-scroll">
+                <span class="stat-number">1000+</span>
+                <span class="stat-label">Довольных пациентов</span>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Врачей в команде</span>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Поддержка клиентов</span>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Партнерских клиник</span>
+            </div>
         </div>
     </div>
 </section>

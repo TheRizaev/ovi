@@ -69,6 +69,7 @@ def truncate_words_html(value, arg):
     plain_text = strip_tags(value)
     return truncatewords(plain_text, arg)
 
+# Добавляем недостающие фильтры
 @register.filter
 def split(value, separator=','):
     """Разделяет строку по разделителю"""
@@ -82,12 +83,15 @@ def make_list(value):
     return list(str(value))
 
 @register.filter
-def slice(value, arg):
+def slice_filter(value, arg):
     """Обрезает строку или список"""
     try:
-        start, end = arg.split(':')
-        start = int(start) if start else None
-        end = int(end) if end else None
-        return value[start:end]
+        if ':' in arg:
+            start, end = arg.split(':')
+            start = int(start) if start else None
+            end = int(end) if end else None
+            return value[start:end]
+        else:
+            return value[:int(arg)]
     except (ValueError, TypeError):
         return value

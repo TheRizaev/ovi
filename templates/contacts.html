@@ -17,18 +17,46 @@
         <div class="contact-content">
             <!-- Contact Info -->
             <div class="contact-info animate-on-scroll">
-                {% for icon, title, info, desc in "📧,Email,support@ovi.uz,Ответим в течение 1 часа|📞,Телефон поддержки,+998 90 123 45 67,Круглосуточно без выходных|📍,Офис,г. Ташкент ул. Ислама Каримова 49,Пн-Пт: 09:00-18:00|💬,Telegram,@ovi_support,Быстрая поддержка в мессенджере|📱,Instagram,@ovi_health,Новости и полезные советы"|split:"|" %}
-                    {% with parts=icon|split:"," %}
-                    <div class="contact-item">
-                        <div class="contact-icon">{{ parts.0 }}</div>
-                        <div class="contact-details">
-                            <h3>{{ parts.1 }}</h3>
-                            <p><a href="{% if parts.0 == '📧' %}mailto:{% elif parts.0 == '📞' %}tel:{% endif %}{{ parts.2 }}">{{ parts.2 }}</a></p>
-                            <p>{{ parts.3 }}</p>
-                        </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h3>Email</h3>
+                        <p><a href="mailto:support@ovi.uz">support@ovi.uz</a></p>
+                        <p>Ответим в течение 1 часа</p>
                     </div>
-                    {% endwith %}
-                {% endfor %}
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <h3>Телефон поддержки</h3>
+                        <p><a href="tel:+998901234567">+998 90 123 45 67</a></p>
+                        <p>Круглосуточно без выходных</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h3>Офис</h3>
+                        <p>г. Ташкент, ул. Ислама Каримова, 49</p>
+                        <p>Пн-Пт: 09:00-18:00</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💬</div>
+                    <div class="contact-details">
+                        <h3>Telegram</h3>
+                        <p><a href="#">@ovi_support</a></p>
+                        <p>Быстрая поддержка в мессенджере</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <h3>Instagram</h3>
+                        <p><a href="#">@ovi_health</a></p>
+                        <p>Новости и полезные советы</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Contact Form -->
@@ -57,11 +85,11 @@
         <h2 class="social-title animate-on-scroll">Мы в социальных сетях</h2>
         <p class="social-subtitle animate-on-scroll">Подписывайтесь на наши аккаунты, чтобы быть в курсе всех новостей</p>
         <div class="social-links animate-on-scroll">
-            {% for icon, title in "📷,Instagram|✈️,Telegram|📘,Facebook|💼,LinkedIn|📺,YouTube"|split:"|" %}
-                {% with parts=icon|split:"," %}
-                <a href="#" class="social-link" title="{{ parts.1 }}">{{ parts.0 }}</a>
-                {% endwith %}
-            {% endfor %}
+            <a href="#" class="social-link" title="Instagram">📷</a>
+            <a href="#" class="social-link" title="Telegram">✈️</a>
+            <a href="#" class="social-link" title="Facebook">📘</a>
+            <a href="#" class="social-link" title="LinkedIn">💼</a>
+            <a href="#" class="social-link" title="YouTube">📺</a>
         </div>
     </div>
 </section>
@@ -73,19 +101,51 @@
         <p class="section-subtitle animate-on-scroll">Ответы на популярные вопросы о нашем сервисе</p>
         
         <div class="faq-container">
-            {% for question, answer in "Как быстро врач приедет на дом?,В среднем врач прибывает в течение 60 минут после оформления заказа|Сколько стоят услуги OVI?,Стоимость зависит от типа услуги. Консультация врача на дому от 100000 сум|Работаете ли вы круглосуточно?,Да наша служба поддержки работает 24/7|Какие способы оплаты доступны?,Мы принимаем оплату банковскими картами через мобильные платежи наличными|Можно ли отменить заказ?,Да заказ можно отменить бесплатно в течение 15 минут после оформления"|split:"|" %}
-                {% with parts=question|split:"?" %}
-                <div class="faq-item animate-on-scroll">
-                    <div class="faq-question">
-                        <span>{{ parts.0 }}?</span>
-                        <span class="faq-icon">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>{{ parts.1 }}</p>
-                    </div>
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question">
+                    <span>Как быстро врач приедет на дом?</span>
+                    <span class="faq-icon">+</span>
                 </div>
-                {% endwith %}
-            {% endfor %}
+                <div class="faq-answer">
+                    <p>В среднем врач прибывает в течение 60 минут после оформления заказа</p>
+                </div>
+            </div>
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question">
+                    <span>Сколько стоят услуги OVI?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Стоимость зависит от типа услуги. Консультация врача на дому от 100000 сум</p>
+                </div>
+            </div>
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question">
+                    <span>Работаете ли вы круглосуточно?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Да, наша служба поддержки работает 24/7</p>
+                </div>
+            </div>
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question">
+                    <span>Какие способы оплаты доступны?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Мы принимаем оплату банковскими картами, через мобильные платежи, наличными</p>
+                </div>
+            </div>
+            <div class="faq-item animate-on-scroll">
+                <div class="faq-question">
+                    <span>Можно ли отменить заказ?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Да, заказ можно отменить бесплатно в течение 15 минут после оформления</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -101,14 +161,18 @@
                 <small style="opacity: 0.8;">г. Ташкент, ул. Ислама Каримова, 49</small>
             </div>
             <div class="map-info">
-                {% for icon, title, desc in "🚗,На автомобиле,Парковка доступна рядом с офисом|🚇,На метро,Станция Алишер Навои 5 минут пешком|🚌,На автобусе,Остановка Медицинский институт"|split:"|" %}
-                    {% with parts=icon|split:"," %}
-                    <div class="map-info-item">
-                        <h4>{{ parts.0 }} {{ parts.1 }}</h4>
-                        <p>{{ parts.2 }}</p>
-                    </div>
-                    {% endwith %}
-                {% endfor %}
+                <div class="map-info-item">
+                    <h4>🚗 На автомобиле</h4>
+                    <p>Парковка доступна рядом с офисом</p>
+                </div>
+                <div class="map-info-item">
+                    <h4>🚇 На метро</h4>
+                    <p>Станция Алишер Навои, 5 минут пешком</p>
+                </div>
+                <div class="map-info-item">
+                    <h4>🚌 На автобусе</h4>
+                    <p>Остановка Медицинский институт</p>
+                </div>
             </div>
         </div>
     </div>
