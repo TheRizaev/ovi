@@ -19,19 +19,27 @@ ls -la static/js/ || echo "JS directory not found"
 echo "Icons:"
 ls -la static/icons/ || echo "Icons directory not found"
 
+# Создаем директорию для статических файлов
+echo "Creating staticfiles directory..."
+mkdir -p staticfiles
+
 # Очистка старых статических файлов
 echo "Cleaning old static files..."
 rm -rf staticfiles/*
 
 # Сбор статических файлов с подробным выводом
 echo "Collecting static files..."
-python manage.py collectstatic --noinput --verbosity=2
+python manage.py collectstatic --noinput --verbosity=2 --clear
 
 # Проверяем что файлы скопировались
 echo "Checking collected static files..."
 ls -la staticfiles/
 echo "Collected CSS files:"
 ls -la staticfiles/css/ || echo "No CSS files collected"
+echo "Collected JS files:"
+ls -la staticfiles/js/ || echo "No JS files collected"
+echo "Collected icons:"
+ls -la staticfiles/icons/ || echo "No icons collected"
 
 # Применение миграций
 echo "Running migrations..."
