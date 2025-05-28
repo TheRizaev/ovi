@@ -11,6 +11,80 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Mobile menu toggle - ОБНОВЛЕННАЯ ВЕРСИЯ
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    const navbar = document.querySelector('.navbar');
+    
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMobileMenu();
+        });
+        
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
+        
+        // Закрытие меню при клике вне его области
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target) && navMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Закрытие меню при изменении размера экрана
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Закрытие меню при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+    }
+    
+    function toggleMobileMenu() {
+        const isActive = navMenu.classList.contains('active');
+        
+        if (isActive) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+    }
+    
+    function openMobileMenu() {
+        navMenu.classList.add('active');
+        mobileMenuBtn.classList.add('active');
+        document.body.classList.add('menu-open');
+        
+        // Добавляем анимацию появления для ссылок
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach((link, index) => {
+            link.style.animation = `fadeInUp 0.3s ease ${index * 0.1}s both`;
+        });
+    }
+    
+    function closeMobileMenu() {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        
+        // Убираем анимацию
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.style.animation = '';
+        });
+    }
+
     // Animate on scroll
     const observerOptions = {
         threshold: 0.1,
@@ -72,6 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
+                // Закрываем мобильное меню если оно открыто
+                closeMobileMenu();
+                
                 target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
@@ -79,17 +156,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    // Mobile menu toggle
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.querySelector('.nav-menu');
-
-    if (mobileMenuBtn && navMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileMenuBtn.classList.toggle('active');
-        });
-    }
 
     // Add hover effects to cards
     document.querySelectorAll('.step-card, .feature-card, .review-card, .news-card, .service-card').forEach(card => {
@@ -136,18 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 600);
         });
     });
-
-    // Add CSS for ripple animation
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes ripple {
-            to {
-                transform: scale(2);
-                opacity: 0;
-            }
-        }
-    `;
-    document.head.appendChild(style);
 
     // Form handling
     const forms = document.querySelectorAll('form');
@@ -233,17 +287,40 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-
-    // Add fade in animation for filtered items
-    const fadeInStyle = document.createElement('style');
-    fadeInStyle.textContent = `
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    `;
-    document.head.appendChild(fadeInStyle);
 });
+
+// Add CSS for ripple and fade animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Стили для body при открытом меню */
+    body.menu-open {
+        overflow: hidden;
+    }
+`;
+document.head.appendChild(style);
 
 // Utility functions
 function debounce(func, wait) {
